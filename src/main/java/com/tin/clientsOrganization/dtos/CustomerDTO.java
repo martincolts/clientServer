@@ -2,11 +2,20 @@ package com.tin.clientsOrganization.dtos;
 
 public class CustomerDTO {
 
+    public Long id ;
     public String name;
     public String lastname ;
     public String phoneNumber ;
     public String address ;
     public String dni ;
+
+    public Long getId(){
+        return id;
+    }
+
+    public void setId(Long id){
+        this.id = id;
+    }
 
     public String getName() {
         return name;

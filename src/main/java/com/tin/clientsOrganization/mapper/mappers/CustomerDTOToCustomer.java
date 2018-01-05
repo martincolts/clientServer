@@ -16,6 +16,7 @@ public class CustomerDTOToCustomer extends BaseMapper<CustomerDTO, Customer> {
         customer.setLastname(customerDTO.getLastname());
         customer.setName(customerDTO.getName());
         customer.setPhoneNumber(customerDTO.getPhoneNumber());
+        customer.setId(customerDTO.getId());
         return customer;
     }
 

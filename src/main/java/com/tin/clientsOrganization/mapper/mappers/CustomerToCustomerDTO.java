@@ -30,6 +30,7 @@ public class CustomerToCustomerDTO extends BaseMapper<Customer, CustomerDTO> {
         customerDTO.setLastname(customer.getLastname());
         customerDTO.setName(customer.getName());
         customerDTO.setPhoneNumber(customer.getPhoneNumber());
+        customerDTO.setId(customer.getId());
         return customerDTO;
     }
 }

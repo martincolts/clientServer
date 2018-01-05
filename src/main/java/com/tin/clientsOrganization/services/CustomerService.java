@@ -3,6 +3,7 @@ package com.tin.clientsOrganization.services;
 import com.tin.clientsOrganization.entities.Customer;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CustomerService {
 
@@ -10,7 +11,7 @@ public interface CustomerService {
 
     List<Customer> findByName(String name);
 
-    void update (Customer customer);
+    Customer update (Customer customer);
 
     void delete (Long id);
 

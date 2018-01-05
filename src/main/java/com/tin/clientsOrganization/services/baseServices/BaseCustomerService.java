@@ -1,5 +1,6 @@
 package com.tin.clientsOrganization.services.baseServices;
 
+import com.google.common.base.Strings;
 import com.tin.clientsOrganization.entities.Customer;
 import com.tin.clientsOrganization.repositories.CustomerRepository;
 import com.tin.clientsOrganization.services.CustomerService;
@@ -17,7 +18,9 @@ public class BaseCustomerService implements CustomerService {
     @Override
     public Customer findById(Long id) {
         Optional<Customer> c = customerRepository.findById(id);
-        return c.get();
+        if (c.isPresent())
+            return c.get();
+        return null;
     }
 
     @Override
@@ -26,8 +29,17 @@ public class BaseCustomerService implements CustomerService {
     }
 
     @Override
-    public void update(Customer customer) {
-
+    public Customer update(Customer customer) {
+        Optional<Customer> opCus= customerRepository.findById(customer.getId());
+        Customer customerToModify = opCus.get();
+        customer.setName(!Strings.isNullOrEmpty(customer.getName())?customer.getName():customerToModify.getName());
+        customer.setLastname(!Strings.isNullOrEmpty(customer.getLastname())?customer.getLastname():customerToModify.getLastname());
+        customer.setPhoneNumber(!Strings.isNullOrEmpty(customer.getPhoneNumber())?customer.getPhoneNumber():customerToModify.getPhoneNumber());
+        customer.setDni(!Strings.isNullOrEmpty(customer.getDni())?customer.getDni():customerToModify.getDni());
+        customer.setAddress(!Strings.isNullOrEmpty(customer.getAddress())?customer.getAddress():customerToModify.getAddress());
+        customerRepository.updateById(customer.getName(),customer.getLastname(),customer.getPhoneNumber(),customer.getDni(),
+                customer.getAddress(),customer.getId());
+        return customer ;
     }
 
     @Override
