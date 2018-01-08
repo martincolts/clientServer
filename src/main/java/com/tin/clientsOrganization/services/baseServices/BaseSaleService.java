@@ -43,7 +43,15 @@ public class BaseSaleService implements SaleService {
 
     @Override
     public Sale update(Sale sale) {
-        return null;
+        Sale saleToUpdate = saleRepository.findById(sale.getId());
+        saleToUpdate.setAmount(sale.getAmount()!=null?sale.getAmount():saleToUpdate.getAmount());
+        saleToUpdate.setProduct(sale.getProduct()!=null?sale.getProduct():saleToUpdate.getProduct());
+        saleToUpdate.setCustomer(sale.getCustomer()!=null?sale.getCustomer():saleToUpdate.getCustomer());
+        saleToUpdate.setDate(sale.getDate()!=null?sale.getDate():saleToUpdate.getDate());
+        saleToUpdate.setFees(sale.getFees()!=null?sale.getFees():saleToUpdate.getFees());
+        saleRepository.updateById(sale.getId(),sale.getAmount(),sale.getCustomer(),sale.getDate(),
+                sale.getFees(),sale.getProduct());
+        return saleToUpdate;
     }
 
     @Override
@@ -53,7 +61,8 @@ public class BaseSaleService implements SaleService {
 
     @Override
     public List<Sale> findByCustomer(Long id) {
-        Customer customer = customerRepository.findById(id).get();
+        Customer customer = new Customer();
+        customer.setId(id);
         return saleRepository.findByCustomer(customer);
     }
 }

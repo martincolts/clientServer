@@ -1,6 +1,5 @@
 package com.tin.clientsOrganization.services;
 
-import com.tin.clientsOrganization.entities.Customer;
 import com.tin.clientsOrganization.entities.Sale;
 
 import java.util.List;

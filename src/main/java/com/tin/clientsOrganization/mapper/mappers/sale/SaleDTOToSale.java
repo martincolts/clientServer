@@ -1,4 +1,4 @@
-package com.tin.clientsOrganization.mapper.mappers;
+package com.tin.clientsOrganization.mapper.mappers.sale;
 
 import com.tin.clientsOrganization.dtos.SaleDTO;
 import com.tin.clientsOrganization.entities.Customer;
