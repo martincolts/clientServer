@@ -1,13 +1,17 @@
 package com.tin.clientsOrganization.services.baseServices;
 
 import com.tin.clientsOrganization.entities.Customer;
+import com.tin.clientsOrganization.entities.Quota;
 import com.tin.clientsOrganization.entities.Sale;
-import com.tin.clientsOrganization.repositories.CustomerRepository;
+import com.tin.clientsOrganization.repositories.QuotaRepository;
 import com.tin.clientsOrganization.repositories.SaleRepository;
 import com.tin.clientsOrganization.services.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -15,9 +19,9 @@ public class BaseSaleService implements SaleService {
 
     @Autowired
     private SaleRepository saleRepository;
-
+    
     @Autowired
-    private CustomerRepository customerRepository;
+    private QuotaRepository quotaRepository;
 
     @Override
     public Sale findById(Long id) {
@@ -26,12 +30,38 @@ public class BaseSaleService implements SaleService {
 
     @Override
     public Sale save(Sale sale) {
-        Customer customer = customerRepository.findById(sale.getCustomer().getId()).get();
-        sale.setCustomer(customer);
-        return saleRepository.save(sale);
+        /*Customer customer = customerRepository.findById(sale.getCustomer().getId()).get();
+        sale.setCustomer(customer);*/
+        Sale saleSave = saleRepository.save(sale);
+        List<Quota> quotas = generateCuotas(saleSave);
+        for (Quota q : quotas) {
+        	quotaRepository.save(q);
+        }
+        return sale ;
+        
     }
 
-    @Override
+    private  List<Quota> generateCuotas(Sale sale) {
+    	Date beginningDate = (Date) sale.getDate().clone();
+    	
+    	Integer fees = sale.getFees();
+    	List<Quota> quotasToReturn = new ArrayList();
+    	for (int i = 1 ; i <= fees ; i++) {
+    		Quota quota = new Quota();
+    		Calendar calendar = Calendar.getInstance();
+    		calendar.setTime(beginningDate);
+    		calendar.add(Calendar.MONTH, i);
+    		quota.setDueDate(calendar.getTime());
+    		quota.setAmount(sale.getAmount()/fees);
+    		quotasToReturn.add(quota);
+    		quota.setSale(sale);
+    	}
+    		
+    	return quotasToReturn ;
+    	
+	}
+
+	@Override
     public Sale delete(Sale sale) {
         try {
             saleRepository.delete(sale);

@@ -23,4 +23,7 @@ public interface SaleRepository extends JpaRepository<Sale, Long> {
     void updateById(@Param("id") Long id,@Param("amount") Float amount,
                     @Param("customer")Customer customer, @Param("date")Date date, @Param("fees")Integer fees,
                     @Param("product")String product);
+    
+    @Transactional
+    Sale save (Sale sale);
 }
