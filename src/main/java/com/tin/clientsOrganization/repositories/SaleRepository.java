@@ -24,6 +24,6 @@ public interface SaleRepository extends JpaRepository<Sale, Long> {
                     @Param("customer")Customer customer, @Param("date")Date date, @Param("fees")Integer fees,
                     @Param("product")String product);
     
-    @Transactional
-    Sale save (Sale sale);
+    /*@Transactional
+    Sale save (Sale sale);*/
 }

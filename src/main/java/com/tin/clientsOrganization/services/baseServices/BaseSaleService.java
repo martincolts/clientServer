@@ -8,6 +8,7 @@ import com.tin.clientsOrganization.repositories.SaleRepository;
 import com.tin.clientsOrganization.services.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -32,13 +33,17 @@ public class BaseSaleService implements SaleService {
     public Sale save(Sale sale) {
         /*Customer customer = customerRepository.findById(sale.getCustomer().getId()).get();
         sale.setCustomer(customer);*/
-        Sale saleSave = saleRepository.save(sale);
-        List<Quota> quotas = generateCuotas(saleSave);
+        List<Quota> quotas = generateCuotas(saveSale(sale));
         for (Quota q : quotas) {
         	quotaRepository.save(q);
         }
         return sale ;
         
+    }
+
+    @Transactional
+    protected Sale saveSale(Sale sale){
+        return saleRepository.save(sale);
     }
 
     private  List<Quota> generateCuotas(Sale sale) {
