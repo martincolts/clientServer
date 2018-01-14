@@ -30,8 +30,8 @@ public class CustomerController {
     @RequestMapping(method=RequestMethod.POST)
     public @ResponseBody  CustomerDTO saveCustomer (@RequestBody CustomerDTO customerDTO){
         Customer customer = (Customer) mapperManager.convert(customerDTO, Customer.class);
-        customerService.save(customer);
-        return customerDTO;
+        Customer customerSaved = customerService.save(customer);
+        return (CustomerDTO) mapperManager.convert(customerSaved, CustomerDTO.class);
     }
 
     @RequestMapping(method = RequestMethod.GET)

@@ -31,8 +31,6 @@ public class BaseSaleService implements SaleService {
 
     @Override
     public Sale save(Sale sale) {
-        /*Customer customer = customerRepository.findById(sale.getCustomer().getId()).get();
-        sale.setCustomer(customer);*/
         List<Quota> quotas = generateCuotas(saveSale(sale));
         for (Quota q : quotas) {
         	quotaRepository.save(q);
@@ -61,9 +59,7 @@ public class BaseSaleService implements SaleService {
     		quotasToReturn.add(quota);
     		quota.setSale(sale);
     	}
-    		
     	return quotasToReturn ;
-    	
 	}
 
 	@Override
