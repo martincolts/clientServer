@@ -15,6 +15,6 @@ public class BaseQuotaService implements QuotaService {
 
     @Override
     public void update(Quota quota) {
-        quotaRepository.update(quota.getAmount(),quota.getDueDate(),quota.getSale());
+        quotaRepository.update(quota.getAmount(),quota.getDueDate(),quota.getSale(),quota.getId());
     }
 }

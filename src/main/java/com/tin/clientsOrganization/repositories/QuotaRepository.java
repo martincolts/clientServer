@@ -17,5 +17,5 @@ public interface QuotaRepository extends JpaRepository<Quota, Long> {
     @Transactional
     @Modifying
     @Query("update Quota q set q.amount=:amount, q.dueDate=:dueDate, q.sale=:sale where q.id=:id")
-    void update (@Param("amount")Float amount, @Param("dueDate")Date date, @Param("sale")Sale sale);
+    void update (@Param("amount")Float amount, @Param("dueDate")Date date, @Param("sale")Sale sale, @Param("id")Long id);
 }
