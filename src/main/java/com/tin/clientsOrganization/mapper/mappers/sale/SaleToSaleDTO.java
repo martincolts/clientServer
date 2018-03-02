@@ -33,7 +33,8 @@ public class SaleToSaleDTO extends BaseMapper<Sale, SaleDTO> {
     @Override
     public SaleDTO convert(Sale sale, Class<SaleDTO> className) {
         SaleDTO saleDTOtoReturn = getInstance();
-        saleDTOtoReturn.setCustomerDTO((CustomerDTO) mapperManager.convert(sale.getCustomer(), CustomerDTO.class));
+        if (sale.getCustomer()!=null)
+            saleDTOtoReturn.setCustomerDTO((CustomerDTO) mapperManager.convert(sale.getCustomer(), CustomerDTO.class));
         saleDTOtoReturn.setDate(sale.getDate());
         saleDTOtoReturn.setFees(sale.getFees());
         saleDTOtoReturn.setId(sale.getId());

@@ -1,5 +1,8 @@
 package com.tin.clientsOrganization.entities;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;

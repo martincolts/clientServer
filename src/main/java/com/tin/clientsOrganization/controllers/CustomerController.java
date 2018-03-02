@@ -54,4 +54,18 @@ public class CustomerController {
         }
     }
 
+    @RequestMapping (value="/{id}", method = RequestMethod.DELETE)
+    public @ResponseBody ResponseEntity<CustomerDTO> deleteCustomer (@PathVariable Long id){
+        Customer customer = customerService.findById(id);
+        if (customer != null){
+            CustomerDTO customerDTO = (CustomerDTO) mapperManager.convert(customer, CustomerDTO.class);
+            customerService.delete(id);
+            return ResponseEntity.ok(customerDTO);
+        }
+        else
+        {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }
