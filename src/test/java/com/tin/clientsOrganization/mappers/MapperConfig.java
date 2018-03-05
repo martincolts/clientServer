@@ -3,6 +3,7 @@ package com.tin.clientsOrganization.mappers;
 import com.tin.clientsOrganization.entities.Customer;
 import com.tin.clientsOrganization.mapper.BaseMapper;
 import com.tin.clientsOrganization.mapper.MapperManager;
+import com.tin.clientsOrganization.mapper.mappers.customer.CustomerDTOToCustomer;
 import com.tin.clientsOrganization.mapper.mappers.customer.CustomerToCustomerDTO;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class MapperConfig {
 	public List<BaseMapper> mappers (){
 		List<BaseMapper> mappers = new ArrayList<>();
 		mappers.add(new CustomerToCustomerDTO());
+		mappers.add(new CustomerDTOToCustomer());
 		return mappers ;
 	}
 

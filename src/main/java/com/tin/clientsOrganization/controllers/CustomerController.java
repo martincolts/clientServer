@@ -39,6 +39,12 @@ public class CustomerController {
         List<Customer> customers = customerService.getAll();
         return mapperManager.convert(customers,CustomerDTO.class);
     }
+    
+    @RequestMapping(value="/byName/{name}", method = RequestMethod.GET)
+    public @ResponseBody List<CustomerDTO> getCustomerByName(@PathVariable String name){
+    	List<Customer> customers = customerService.findByName(name);
+    	return mapperManager.convert(customers, CustomerDTO.class);
+    }
 
     @RequestMapping(value="/{id}", method = RequestMethod.PUT)
     public @ResponseBody ResponseEntity<CustomerDTO> updateCustomer (@RequestBody CustomerDTO customerDTO, @PathVariable Long id){
