@@ -10,7 +10,7 @@ import java.util.List;
 public class MapperManager<Target, Source> {
 
     @Autowired
-    private List<BaseMapper> mappers ;
+    private List<BaseMapper> mappers = new ArrayList<>();
 
     public Target convert (Source c , Class<Target> className){
         Mapper mapper = getMapper(c, className);
@@ -36,6 +36,10 @@ public class MapperManager<Target, Source> {
             }
         }
         return null;
+    }
+
+    public void setMapper (BaseMapper baseMapper){
+        mappers.add(baseMapper);
     }
 
 }

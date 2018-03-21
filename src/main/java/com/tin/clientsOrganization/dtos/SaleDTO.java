@@ -3,6 +3,7 @@ package com.tin.clientsOrganization.dtos;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
+import java.util.List;
 
 public class SaleDTO {
 
@@ -14,6 +15,7 @@ public class SaleDTO {
     private Integer fees;
     private String product;
     private Float amount;
+    private List<QuotaDTO> quotaDTOs;
 
     public CustomerDTO getCustomerDTO() {
         return customerDTO;
@@ -61,5 +63,13 @@ public class SaleDTO {
 
     public void setAmount(Float amount) {
         this.amount = amount;
+    }
+
+    public List<QuotaDTO> getQuotaDTOs() {
+        return quotaDTOs;
+    }
+
+    public void setQuotaDTOs(List<QuotaDTO> quotaDTOs) {
+        this.quotaDTOs = quotaDTOs;
     }
 }

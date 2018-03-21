@@ -1,24 +1,15 @@
 package com.tin.clientsOrganization.dtos;
 
-import com.tin.clientsOrganization.entities.Sale;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
 public class QuotaDTO {
 
-    private SaleDTO saleDTO;
-
     private Long id;
+    @JsonFormat(pattern="dd-MM-yyyy")
     private Date dueDate ;
     private Float amount ;
-
-    public SaleDTO getSaleDTO() {
-        return saleDTO;
-    }
-
-    public void setSaleDTO(SaleDTO saleDTO) {
-        this.saleDTO = saleDTO;
-    }
 
     public Long getId() {
         return id;

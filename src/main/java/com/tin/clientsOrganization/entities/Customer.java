@@ -1,5 +1,7 @@
 package com.tin.clientsOrganization.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -7,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="customer")
-public class Customer {
+public class Customer implements Serializable{
 
 
     private Long id ;

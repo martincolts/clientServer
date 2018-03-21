@@ -30,14 +30,20 @@ public class CustomerController {
     @RequestMapping(method=RequestMethod.POST)
     public @ResponseBody  CustomerDTO saveCustomer (@RequestBody CustomerDTO customerDTO){
         Customer customer = (Customer) mapperManager.convert(customerDTO, Customer.class);
-        customerService.save(customer);
-        return customerDTO;
+        Customer customerSaved = customerService.save(customer);
+        return (CustomerDTO) mapperManager.convert(customerSaved, CustomerDTO.class);
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody List<CustomerDTO> getAllCustomers (){
         List<Customer> customers = customerService.getAll();
         return mapperManager.convert(customers,CustomerDTO.class);
+    }
+    
+    @RequestMapping(value="/byName/{name}", method = RequestMethod.GET)
+    public @ResponseBody List<CustomerDTO> getCustomerByName(@PathVariable String name){
+    	List<Customer> customers = customerService.findByName(name);
+    	return mapperManager.convert(customers, CustomerDTO.class);
     }
 
     @RequestMapping(value="/{id}", method = RequestMethod.PUT)
@@ -51,6 +57,20 @@ public class CustomerController {
         }
         else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping (value="/{id}", method = RequestMethod.DELETE)
+    public @ResponseBody ResponseEntity<CustomerDTO> deleteCustomer (@PathVariable Long id){
+        Customer customer = customerService.findById(id);
+        if (customer != null){
+            CustomerDTO customerDTO = (CustomerDTO) mapperManager.convert(customer, CustomerDTO.class);
+            customerService.delete(id);
+            return ResponseEntity.ok(customerDTO);
+        }
+        else
+        {
+            return ResponseEntity.notFound().build();
         }
     }
 

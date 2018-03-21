@@ -36,7 +36,7 @@ public class QuotaDTOToQuota extends BaseMapper<QuotaDTO, Quota> {
         quota.setAmount(quotaDTO.getAmount());
         quota.setDueDate(quotaDTO.getDueDate());
         quota.setId(quotaDTO.getId());
-        quota.setSale((Sale) mapperManager.convert(quotaDTO.getSaleDTO(),Sale.class));
+        //quota.setSale((Sale) mapperManager.convert(quotaDTO.getSaleDTO(),Sale.class));
         return quota;
     }
 }

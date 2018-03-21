@@ -1,7 +1,11 @@
 package com.tin.clientsOrganization.entities;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="sale")
@@ -13,6 +17,7 @@ public class Sale {
     private Integer fees;
     private String product;
     private Float amount;
+    private List<Quota> quotas ;
 
     @Id
     @GeneratedValue
@@ -65,5 +70,14 @@ public class Sale {
 
     public void setAmount(Float amount) {
         this.amount = amount;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sale", fetch = FetchType.EAGER)
+    public List<Quota> getQuotas() {
+        return quotas;
+    }
+
+    public void setQuotas(List<Quota> quotas) {
+        this.quotas = quotas;
     }
 }

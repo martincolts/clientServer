@@ -25,7 +25,7 @@ public class SaleController {
         return mapperManager.convert(sales, SaleDTO.class);
     }
 
-    @RequestMapping(value="/{id}", method = RequestMethod.POST)
+    @RequestMapping(value="/{id}", method = RequestMethod.GET)
     public @ResponseBody SaleDTO getById(@PathVariable Long id){
         Sale sale = saleService.findById(id);
         return (SaleDTO) mapperManager.convert(sale, SaleDTO.class);

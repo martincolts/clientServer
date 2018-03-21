@@ -1,6 +1,7 @@
 package com.tin.clientsOrganization.mapper.mappers.sale;
 
 import com.tin.clientsOrganization.dtos.CustomerDTO;
+import com.tin.clientsOrganization.dtos.QuotaDTO;
 import com.tin.clientsOrganization.dtos.SaleDTO;
 import com.tin.clientsOrganization.entities.Sale;
 import com.tin.clientsOrganization.mapper.BaseMapper;
@@ -32,12 +33,15 @@ public class SaleToSaleDTO extends BaseMapper<Sale, SaleDTO> {
     @Override
     public SaleDTO convert(Sale sale, Class<SaleDTO> className) {
         SaleDTO saleDTOtoReturn = getInstance();
-        saleDTOtoReturn.setCustomerDTO((CustomerDTO) mapperManager.convert(sale.getCustomer(), CustomerDTO.class));
+        if (sale.getCustomer()!=null)
+            saleDTOtoReturn.setCustomerDTO((CustomerDTO) mapperManager.convert(sale.getCustomer(), CustomerDTO.class));
         saleDTOtoReturn.setDate(sale.getDate());
         saleDTOtoReturn.setFees(sale.getFees());
         saleDTOtoReturn.setId(sale.getId());
         saleDTOtoReturn.setProduct(sale.getProduct());
         saleDTOtoReturn.setAmount(sale.getAmount());
+        if (sale.getQuotas()!=null && sale.getQuotas().size()>0)
+            saleDTOtoReturn.setQuotaDTOs(mapperManager.convert(sale.getQuotas(), QuotaDTO.class));
         return saleDTOtoReturn;
     }
 }
