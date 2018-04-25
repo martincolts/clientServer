@@ -3,6 +3,7 @@ package com.tin.clientsOrganization.services.baseServices;
 import com.google.common.base.Strings;
 import com.tin.clientsOrganization.entities.Customer;
 import com.tin.clientsOrganization.repositories.CustomerRepository;
+import com.tin.clientsOrganization.repositories.SaleRepository;
 import com.tin.clientsOrganization.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ public class BaseCustomerService implements CustomerService {
 
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private SaleRepository saleRepository;
 
     @Override
     public Customer findById(Long id) {
@@ -44,6 +48,7 @@ public class BaseCustomerService implements CustomerService {
 
     @Override
     public void delete(Long id) {
+        saleRepository.updateSales(customerRepository.findById(id).get());
         customerRepository.delete(id);
     }
 

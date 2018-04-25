@@ -29,17 +29,17 @@ public class Sale {
         this.id = id;
     }
 
+    @Column(name = "sale_date")
     public Date getDate() {
         return date;
     }
 
-    @Column(name = "sale_date")
     public void setDate(Date date) {
         this.date = date;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id", updatable = true, insertable = true, nullable = true)
     public Customer getCustomer() {
         return customer;
     }
@@ -72,7 +72,7 @@ public class Sale {
         this.amount = amount;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sale", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sale", fetch = FetchType.LAZY)
     public List<Quota> getQuotas() {
         return quotas;
     }
