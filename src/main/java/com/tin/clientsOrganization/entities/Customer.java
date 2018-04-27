@@ -1,20 +1,11 @@
 package com.tin.clientsOrganization.entities;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import java.io.Serializable;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name="customer")
-public class Customer implements Serializable{
+public class Customer {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator = "customerGen")
-    @SequenceGenerator(name = "customerGen",
-            sequenceName = "customer_sequence")
     private Long id ;
     private String name ;
     private String lastname ;
@@ -23,6 +14,9 @@ public class Customer implements Serializable{
     private String address;
 
 
+    @Id
+    @SequenceGenerator(name="customerSequence", sequenceName="customer_sequence")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="customerSequence")
     public Long getId() {
         return id;
     }

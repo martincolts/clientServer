@@ -12,3 +12,6 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: none
+      
+server:
+  port: 4040

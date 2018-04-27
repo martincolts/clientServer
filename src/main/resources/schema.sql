@@ -1,4 +1,11 @@
-create table customer (
+--drop table customer cascade ;
+--drop table sale cascade ;
+--drop table quota cascade ;
+--drop sequence customer_sequence ;
+
+--CREATE SEQUENCE if not exists customer_sequence start with 1;
+
+create table if not exists customer (
   id numeric not null,
   name varchar(32) not null,
   lastname varchar(32) not null,
@@ -7,11 +14,10 @@ create table customer (
   address varchar(32)
 );
 
-CREATE SEQUENCE customer_sequence START with 1;
 alter table customer add constraint customer_pk PRIMARY KEY (id);
 
 
-create table sale (
+create table if not exists sale (
   id numeric not null,
   sale_date date not null,
   customer_id numeric,
@@ -23,7 +29,7 @@ create table sale (
 alter table sale add CONSTRAINT sale_pk PRIMARY KEY (id);
 alter table sale add CONSTRAINT customer_sale_fk FOREIGN KEY (customer_id) references customer(id) on update set null;
 
-create table quota (
+create table if not exists quota (
   id numeric not NULL ,
   dueDate DATE not null,
   amount numeric (10,2) not null,
