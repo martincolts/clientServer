@@ -1,8 +1,5 @@
 package com.tin.clientsOrganization.entities;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -29,11 +26,11 @@ public class Sale {
         this.id = id;
     }
 
+    @Column(name = "sale_date")
     public Date getDate() {
         return date;
     }
 
-    @Column(name = "sale_date")
     public void setDate(Date date) {
         this.date = date;
     }
