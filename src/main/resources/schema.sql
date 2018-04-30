@@ -1,9 +1,9 @@
-drop table customer cascade ;
-drop table sale cascade ;
-drop table quota cascade ;
-drop sequence customer_sequence ;
-drop sequence sale_sequence ;
-drop sequence quota_sequence ;  
+--drop table if exists customer cascade ;
+--drop table if exists sale cascade ;
+--drop table if exists quota cascade ;
+--drop if exists sequence customer_sequence ;
+--drop if exists sequence sale_sequence ;
+--drop if exists sequence quota_sequence ;  
 
 CREATE SEQUENCE if not exists customer_sequence start with 1;
 CREATE SEQUENCE if not exists sale_sequence start with 1;
@@ -31,11 +31,12 @@ create table if not exists sale (
 );
 
 alter table sale add CONSTRAINT sale_pk PRIMARY KEY (id);
-alter table sale add CONSTRAINT customer_sale_fk FOREIGN KEY (customer_id) references customer(id) on update set null;
+alter table sale add CONSTRAINT customer_sale_fk FOREIGN KEY (customer_id) references customer(id) on delete set null;
 
 create table if not exists quota (
   id numeric not NULL ,
   due_date DATE not null,
+  paid_out boolean default false, 
   amount numeric (10,2) not null,
   sale_id numeric not null
 );

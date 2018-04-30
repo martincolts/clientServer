@@ -9,6 +9,7 @@ public class Quota {
 
     private Long id;
     private Date date ;
+    private boolean paidOut;
     private Float amount ;
     private Sale sale;
 
@@ -48,5 +49,14 @@ public class Quota {
 
     public void setSale(Sale sale) {
         this.sale = sale;
+    }
+    
+    public void setPaidOut(boolean paidOut) {
+    	this.paidOut = paidOut;
+    }
+    
+    @Column(name = "paid_out")
+    public boolean getPaidOut() {
+    	return this.paidOut;
     }
 }

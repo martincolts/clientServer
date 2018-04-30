@@ -92,4 +92,6 @@ public class Sale {
     public void setQuotas(List<Quota> quotas) {
         this.quotas = quotas;
     }
+    
+    
 }

@@ -20,9 +20,6 @@ public class BaseSaleService implements SaleService {
 
     @Autowired
     private SaleRepository saleRepository;
-    
-    @Autowired
-    private QuotaRepository quotaRepository;
 
     @Override
     public Sale findById(Long id) {
@@ -45,7 +42,7 @@ public class BaseSaleService implements SaleService {
     	
     	Integer fees = sale.getFees();
     	List<Quota> quotasToReturn = new ArrayList();
-    	for (int i = 1 ; i <= fees ; i++) {
+    	for (int i = 0 ; i < fees ; i++) {
     		Quota quota = new Quota();
     		Calendar calendar = Calendar.getInstance();
     		calendar.setTime(beginningDate);
