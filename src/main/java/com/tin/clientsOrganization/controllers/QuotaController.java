@@ -7,7 +7,7 @@ import com.tin.clientsOrganization.mapper.MapperManager;
 import com.tin.clientsOrganization.services.QuotaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin
 @RestController
 @RequestMapping(value="/quota" , headers = "Accept=application/json")
 public class QuotaController {
