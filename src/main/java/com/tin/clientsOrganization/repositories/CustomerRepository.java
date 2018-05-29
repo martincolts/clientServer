@@ -7,8 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.websocket.server.PathParam;
-import java.beans.Transient;
 import java.util.List;
 import java.util.Optional;
 
