@@ -20,9 +20,6 @@ public class BaseSaleService implements SaleService {
 
     @Autowired
     private SaleRepository saleRepository;
-    
-    @Autowired
-    private QuotaRepository quotaRepository;
 
     @Override
     public Sale findById(Long id) {
@@ -31,17 +28,13 @@ public class BaseSaleService implements SaleService {
 
     @Override
     public Sale save(Sale sale) {
-        List<Quota> quotas = generateCuotas(saveSale(sale));
-        for (Quota q : quotas) {
-        	quotaRepository.save(q);
-        }
-        return sale ;
-        
+        sale.setQuotas(generateCuotas(sale));
+        return saleRepository.save(sale);
     }
 
     @Transactional
     protected Sale saveSale(Sale sale){
-        return saleRepository.save(sale);
+    	return saleRepository.save(sale);
     }
 
     private  List<Quota> generateCuotas(Sale sale) {
@@ -49,12 +42,12 @@ public class BaseSaleService implements SaleService {
     	
     	Integer fees = sale.getFees();
     	List<Quota> quotasToReturn = new ArrayList();
-    	for (int i = 1 ; i <= fees ; i++) {
+    	for (int i = 0 ; i < fees ; i++) {
     		Quota quota = new Quota();
     		Calendar calendar = Calendar.getInstance();
     		calendar.setTime(beginningDate);
     		calendar.add(Calendar.MONTH, i);
-    		quota.setDueDate(calendar.getTime());
+    		quota.setDate(calendar.getTime());
     		quota.setAmount(sale.getAmount()/fees);
     		quotasToReturn.add(quota);
     		quota.setSale(sale);

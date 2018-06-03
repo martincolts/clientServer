@@ -8,12 +8,14 @@ import java.util.Date;
 public class Quota {
 
     private Long id;
-    private Date dueDate ;
+    private Date date ;
+    private boolean paidOut;
     private Float amount ;
     private Sale sale;
 
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name="quotaSequence", sequenceName="quota_sequence")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="quotaSequence")
     public Long getId() {
         return id;
     }
@@ -22,12 +24,13 @@ public class Quota {
         this.id = id;
     }
 
-    public Date getDueDate() {
-        return dueDate;
+    @Column(name="due_date")
+    public Date getDate() {
+        return date;
     }
 
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public Float getAmount() {
@@ -46,5 +49,14 @@ public class Quota {
 
     public void setSale(Sale sale) {
         this.sale = sale;
+    }
+    
+    public void setPaidOut(boolean paidOut) {
+    	this.paidOut = paidOut;
+    }
+    
+    @Column(name = "paid_out")
+    public boolean getPaidOut() {
+    	return this.paidOut;
     }
 }

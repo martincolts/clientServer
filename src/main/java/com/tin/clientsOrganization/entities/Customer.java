@@ -1,16 +1,10 @@
 package com.tin.clientsOrganization.entities;
 
-import java.io.Serializable;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="customer")
-public class Customer implements Serializable{
-
+public class Customer {
 
     private Long id ;
     private String name ;
@@ -19,8 +13,10 @@ public class Customer implements Serializable{
     private String dni ;
     private String address;
 
+
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name="customerSequence", sequenceName="customer_sequence")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="customerSequence")
     public Long getId() {
         return id;
     }
