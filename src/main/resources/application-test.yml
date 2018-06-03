@@ -16,3 +16,5 @@ spring:
       ddl-auto: none
     generate-ddl: false
     database: h2
+server:
+  port: 9191

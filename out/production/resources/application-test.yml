@@ -4,6 +4,8 @@ spring:
     username: sa
     password:
     driver-class-name: org.h2.Driver
+    continue-on-error: true
+    platform: h2
   h2:
     console:
       enabled: false
@@ -11,4 +13,8 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none
+    generate-ddl: false
+    database: h2
+server:
+  port: 9191
