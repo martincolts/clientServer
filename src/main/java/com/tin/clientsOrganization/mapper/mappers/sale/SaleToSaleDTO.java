@@ -3,6 +3,7 @@ package com.tin.clientsOrganization.mapper.mappers.sale;
 import com.tin.clientsOrganization.dtos.CustomerDTO;
 import com.tin.clientsOrganization.dtos.QuotaDTO;
 import com.tin.clientsOrganization.dtos.SaleDTO;
+import com.tin.clientsOrganization.entities.Customer;
 import com.tin.clientsOrganization.entities.Sale;
 import com.tin.clientsOrganization.mapper.BaseMapper;
 import com.tin.clientsOrganization.mapper.MapperManager;

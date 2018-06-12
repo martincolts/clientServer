@@ -8,6 +8,7 @@
 CREATE SEQUENCE if not exists customer_sequence start with 1;
 CREATE SEQUENCE if not exists sale_sequence start with 1;
 CREATE SEQUENCE if not exists quota_sequence start with 1;
+CREATE SEQUENCE if not exists app_user_sequence start with 1;
 
 create table if not exists customer (
   id numeric not null,
@@ -43,3 +44,11 @@ create table if not exists quota (
 
 alter table quota add CONSTRAINT quota_pk PRIMARY KEY (id);
 alter table quota add constraint sale_quota_fk FOREIGN KEY (sale_id) REFERENCES sale (id);
+
+create table if not exists application_user (
+  id numeric not null ,
+  username varchar(250) not null,
+  password varchar(250) not null
+);
+
+alter table user add CONSTRAINT  user_pk PRIMARY KEY (id);

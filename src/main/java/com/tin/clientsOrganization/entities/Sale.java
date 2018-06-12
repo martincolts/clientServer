@@ -50,8 +50,8 @@ public class Sale {
         this.date = date;
     }
 
-    @ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "customer_id", updatable = true, insertable = true, nullable = true)
+    @ManyToOne (fetch = FetchType.EAGER)
+    @JoinColumn(name = "customer_id")
     public Customer getCustomer() {
         return customer;
     }

@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
@@ -21,6 +22,11 @@ public class ClientsOrganizationApplication {
 	@PostConstruct
 	void started() {
 		TimeZone.setDefault(TimeZone.getTimeZone("ART"));
+	}
+
+	@Bean
+	public BCryptPasswordEncoder bCryptPasswordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
 
 	public static void main(String[] args) {

@@ -13,10 +13,10 @@ public class Customer {
     private String dni ;
     private String address;
 
-
     @Id
     @SequenceGenerator(name="customerSequence", sequenceName="customer_sequence")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="customerSequence")
+    @Column(name = "id")
     public Long getId() {
         return id;
     }
